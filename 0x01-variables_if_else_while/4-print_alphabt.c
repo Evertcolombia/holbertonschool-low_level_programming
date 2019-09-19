@@ -8,12 +8,12 @@
 
 int main(void)
 {
-int ch;
+int c;
 
-for (ch = 'a'; ch <= 'z'; ch++)
+for (c = 'a'; c <= 'z'; c++)
 {
-if ((ch != 'q') && (ch != 'e'))
-putchar(ch);
+if ((c != 'q') && (c != 'e'))
+putchar(c);
 }
 putchar('\n');
 return (0);

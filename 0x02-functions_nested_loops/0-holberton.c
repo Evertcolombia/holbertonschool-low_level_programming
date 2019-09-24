@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * Main: Entry Point
+ * main - Entry Point
  *
  * Return: Always 0 (success)
  */
@@ -9,8 +9,8 @@
 int main(void)
 {
 
-char *c = "Holberton";
-unsigned long i;
+	char *c = "Holberton";
+	unsigned long i;
 
 	for (i = 0; i <= sizeof(c); i++)
 		_putchar(c[i]);

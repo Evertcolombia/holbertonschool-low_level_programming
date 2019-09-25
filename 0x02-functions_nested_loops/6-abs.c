@@ -12,5 +12,7 @@ int _abs(int n)
 	int res;
 
 	res = abs(n);
+	if (n  < 0)
+		res = res * -1;
 	return (res);
 }

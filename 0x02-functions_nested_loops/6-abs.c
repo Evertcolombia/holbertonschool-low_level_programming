@@ -7,8 +7,7 @@
  * Return: On (success) 1
  */
 
-
-int _abs(int n)
+int _abs (int n)
 {
 	int res;
 

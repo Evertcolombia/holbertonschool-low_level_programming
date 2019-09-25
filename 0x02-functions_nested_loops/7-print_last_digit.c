@@ -1,10 +1,11 @@
 #include "holberton.h"
 
 /**
- * _abs - value total
+ * print_last_digit - print last digit of a number
+ * _abs - show an int by stdout c
  * @n: value
  *
- * Return: total.
+ * Return: on (success) 1
  */
 
 int _abs(int n)

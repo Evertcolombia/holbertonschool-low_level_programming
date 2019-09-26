@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <ctype.h>
 
 /**
  * _isdigit - verificate if is a digit the parameter
@@ -11,14 +10,12 @@
 int _isdigit(int c)
 {
 	int res = 0;
-
-	if (isdigit(c))
+	int num;
+	
+	for (num = 48; num <= 57; num++)
 	{
-		res = 1;
-		return (res);
+		if (num == c)
+			res = 1;
 	}
-	else
-	{
-	return (0);
-	}
+	return (res);
 }

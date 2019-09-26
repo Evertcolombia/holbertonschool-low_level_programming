@@ -10,15 +10,12 @@
 
 int _isupper(int c)
 {
-	int res = 0;
+	int res, ret;
 
-	if (isupper(c))
+	for (res = 'A'; res <= 'Z'; res++)
 	{
-		res = 1;
-		return (res);
+		if (res == c)
+			ret = 1;
 	}
-	else
-	{
-		return (0);
-	}
+	return (ret);
 }

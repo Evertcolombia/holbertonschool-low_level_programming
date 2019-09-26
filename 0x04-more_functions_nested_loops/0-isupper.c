@@ -1,6 +1,3 @@
-#include "holberton.h"
-#include <ctype.h>
-
 /**
  * _isupper - verificate if is upper the parameter
  *@c: int with a character
@@ -10,7 +7,8 @@
 
 int _isupper(int c)
 {
-	int res, ret;
+	int res;
+	int ret = 0;
 
 	for (res = 'A'; res <= 'Z'; res++)
 	{

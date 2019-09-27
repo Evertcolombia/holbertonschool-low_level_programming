@@ -2,25 +2,24 @@
 
 /**
  *
- * Main - Entry Point
+ * main - Entry Point
  *
  * Return: Always 0 (success)
  */
-
 int main(void)
 {
-int num;
+	int num;
 
-for (num = 0; num <= 9; num++)
-{
-putchar(num % 10 + '0');
-if (num != 9)
-{
-putchar(',');
-putchar(' ');
-}
-}
-putchar('\n');
-return (0);
+	for (num = 48; num <= 57; num++)
+	{
+		putchar(num);
+		if (num < 57)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+	}
+	putchar('\n');
+	return (0);
 
 }

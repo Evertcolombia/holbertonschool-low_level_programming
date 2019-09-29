@@ -5,7 +5,6 @@
  * main - Entry Point
  *
  */
-
 int main(void)
 {
 
@@ -19,7 +18,7 @@ int main(void)
 			{
 				putchar(a + '0');
 				putchar(b + '0');
-				if (b != 8 && a != 9)
+				if (b != 8 || a != 9)
 				{
 					putchar(44);
 					putchar(32);

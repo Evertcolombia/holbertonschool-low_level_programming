@@ -5,28 +5,23 @@
  *
  * Return: Always 0 (success)
  */
-
-int main(void)
+int main (void)
 {
+	int a, b;
 
-	int i = 48;
-	int j = 48;
-
-	while (i < 58)
+	for (a = 48; a < 58; a++)
 	{
-		while (j < 58)
+		for (b = 48; b < 58; b++)
 		{
-			putchar(i);
-			putchar(j);
-			if (i != 57 || j != 57)
+			putchar(a);
+			putchar(b);
+			if (a != 57 || b != 57)
 			{
 				putchar(',');
 				putchar(' ');
 			}
-			j++;
 		}
-		j = 48;
-		i++;
+		b = 48;
 	}
 	putchar('\n');
 	return (0);

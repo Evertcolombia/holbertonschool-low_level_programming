@@ -14,13 +14,16 @@ int main(void)
 	for (a = 0; a < 9; a++)
 	{
 		for (b = 1; b < 10; b++)
-		{
+		{			
 			if (b > a)
 			{
 				putchar(a + '0');
 				putchar(b + '0');
-				putchar(44);
-				putchar(32);
+				if (b != 8 && a != 9)
+				{
+					putchar(44);
+					putchar(32);
+				}
 			}
 		}
 	}

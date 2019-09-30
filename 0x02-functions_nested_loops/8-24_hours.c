@@ -3,7 +3,7 @@
 /**
  * jack_bauer - entry point
  *
- * Return - no return, print times
+ * Return - Absolute
  */
 void jack_bauer(void)
 {
@@ -26,7 +26,7 @@ void jack_bauer(void)
 						_putchar(m2);
 						_putchar('\n');
 					}
-					if ((h1 == 2) && (h2 < 4))
+					if ((h1 == 50) && (h2 < 52))
 					{
 						_putchar(h1);
 						_putchar(h2);

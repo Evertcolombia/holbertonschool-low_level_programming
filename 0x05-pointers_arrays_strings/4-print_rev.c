@@ -1,22 +1,4 @@
 #include "holberton.h"
-/**
- * _strlen - show the lenght of a string
- * @s: pointe to  pass the array
- *
- * Return: a
- */
-int _strlen(char *s)
-
-{
-	int a = 0;
-
-	while (s[a])
-	{
-		++a;
-	}
-
-	return (a);
-}
 
 /**
  * print_rev - put a string in reverse
@@ -28,11 +10,15 @@ void print_rev(char *s)
 {
 
 	int count;
-	int i;
+	int length;
+	int a = 0;
 
-	i = _strlen(s);
+	while (s[a])
+		++a;
 
-	for (count = i; count >= 0 ; count--)
+	length = a;
+
+	for (count = length; count >= 0 ; count--)
 	{
 		_putchar(s[count]);
 	}

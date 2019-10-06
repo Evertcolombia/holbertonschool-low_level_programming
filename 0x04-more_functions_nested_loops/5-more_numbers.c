@@ -3,31 +3,27 @@
 /**
  * more_numbers - print a serie of numbers
  *
- * return none
+ * return: none
  */
 
 void more_numbers(void)
 {
-	int i;
-	int f;
-	int m;
+	int count, c, a, b;
 
-	int c = 0;
-
-	while (c <= 10)
+	for (c = 0; c <= 10; c++)
 	{
-		for (i = 0; i <= 14; i++)
+		for (count = 0; count <= 14; count++)
 		{
-			f = i;
-			if (i > 9)
+			a = count;
+			if (count > 9)
 			{
-				m = i / 10;
-				f = i % 10;
-				_putchar(m + '0');
+				a = count / 10;
+				b = count % 10;
 			}
-			_putchar(f + '0');
+			_putchar(a + '0');
+			if (count > 9)
+				_putchar(b + '0');
 		}
-		c++;
 		_putchar('\n');
 	}
 }

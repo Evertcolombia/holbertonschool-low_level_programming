@@ -20,7 +20,7 @@ int main(void)
 			printf("Buzz");
 		else
 			printf("%d", count);
-		count  != 100 ? putchar(32):putchar('\n');
+		count  != 100 ? putchar(32) : putchar('\n');
 	}
 	return (0);
 }

@@ -12,7 +12,7 @@ char *_strchr(char *s, char c)
 
 	while (s[i])
 		++i;
-	length = i - 1;
+	length = i;
 	i = 0;
 
 	for (; i <= length; i++)
@@ -20,11 +20,12 @@ char *_strchr(char *s, char c)
 		if (s[i] ==  c)
 		{
 			r = &s[i];
-			break;
+			return (r);
 		}
-		/*else
-			s = s + 1; */
+		else
+			s = s + 1;
 	}
+ 
 	return (r);
 
 }

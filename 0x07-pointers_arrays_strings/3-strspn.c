@@ -1,7 +1,7 @@
 /**
  * _strspn - gets the length of a prefix substring.
- * @s - value
- * @accept - value
+ * @s: ponter to a string
+ * @accept: pointer to a string
  * Return: count
  */
 

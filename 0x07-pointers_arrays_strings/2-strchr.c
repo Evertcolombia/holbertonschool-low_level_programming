@@ -24,7 +24,7 @@ char *_strchr(char *s, char c)
 			break;
 		}
 		else
-			s = s + 1;
+			s = (s + 1);
 	}
 	/*return (r);*/
 	return (s);

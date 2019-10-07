@@ -1,5 +1,10 @@
 #include "holberton.h"
 
+/**
+ * puts2 - puts
+ * @str: string
+ * Return: none
+ */
 void puts2(char *str)
 {
 	int count = 0;
@@ -10,8 +15,8 @@ void puts2(char *str)
 	length = count - 1;
 	for (a = 0; a  <= length; a++)
 	{
-		if(str[a] % 2 == 0)
+		if (str[a] % 2 == 0)
 			_putchar(str[a]);
 	}
-	_putchar('\n');
+	_putchar(10);
 }

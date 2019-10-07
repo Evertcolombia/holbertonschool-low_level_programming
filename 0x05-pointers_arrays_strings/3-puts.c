@@ -6,15 +6,11 @@ include "holberton.h"
  * Return: a
  */
 int _strlen(char *s)
-
 {
 	int a = 0;
 
 	while (s[a])
-	{
 		++a;
-	}
-
 	return (a);
 }
 
@@ -30,8 +26,6 @@ void _puts(char *str)
 	int count;
 
 	for (count = 0; count < _strlen(str); count++)
-	{
 		_putchar(str[count]);
-	}
 	_putchar('\n');
 }

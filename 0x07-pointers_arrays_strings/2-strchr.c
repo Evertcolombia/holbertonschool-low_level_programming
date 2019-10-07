@@ -22,8 +22,9 @@ char *_strchr(char *s, char c)
 			r = &s[i];
 			break;
 		}
-		else
-			s = (s + 1);
+		/*else
+			s = s + 1; */
 	}
 	return (r);
+
 }

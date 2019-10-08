@@ -1,5 +1,11 @@
 #include "holberton.h"
 
+/**
+ * print_chessboard - prints a chessboard
+ * @a: pointer to a bidimensional array
+ *
+ * Return: none
+ */
 void print_chessboard(char (*a)[8])
 {
 	int count, c;

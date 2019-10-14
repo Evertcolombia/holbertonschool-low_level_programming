@@ -1,6 +1,11 @@
 #include <stdio.h>
 
-int main ()
+/**
+ * main - Entry point
+ *
+ * Return: always 0 (succes)
+ */
+int main(void)
 {
 	int num, mul3 = 0, mul5 = 0, total;
 

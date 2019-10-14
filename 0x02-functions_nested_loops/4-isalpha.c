@@ -4,7 +4,6 @@
  *
  * Return: On (success) 1
  */
-
 int _isalpha(int c)
 {
 
@@ -21,6 +20,5 @@ int _isalpha(int c)
 		if (c == letter)
 			r = 1;
 	}
-
 	return (r);
 }

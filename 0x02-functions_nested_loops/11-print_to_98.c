@@ -1,20 +1,35 @@
-#include "holberton.h"
+#include <stdio.h>
+#include <stdlib.h>
 
+/**
+ * print_to_98 - absoluted value
+ * @n: value
+ *
+ * Return: absoluted.
+ */
 void print_to_98(int n)
 {
-	int counta, countb;
+	int num;
 
-	for (counta = 0; counta  <= 9; counta++)
+	if (n == 98)
+		printf("%d", n);
+	if (n < 98)
 	{
-		for (countb = 0; countb <= 9; countb++)
+		for (num = n; num <= 98; num++)
 		{
-			if(countb != 9)
-			{
-				_putchar(countb + '0');
-				_putchar(44);
-				_putchar(32);
-			}
-			else
-			{
-				_putchar(counta + '0');a
-				_putchar(4
+			printf("%d", num);
+			if (num != 98)
+				putchar(44), putchar(32);
+		}
+	}
+	if (n > 98)
+	{
+		for (num = n; num >= 98; num--)
+		{
+			printf("%d", num);
+			if (num != 98)
+				putchar(44), putchar(32);
+		}
+	}
+	putchar(10);
+}

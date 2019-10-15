@@ -1,17 +1,16 @@
 #include "holberton.h"
 
 /**
- * _strlen - show the lenght of a string
- * @s: pointe to  pass the array
+ * _puts - prints  a string
+ * @str: pointee to  pass the string
  *
  * Return: none
  */
 void _puts(char *str)
 {
-    int i = 0;
-    
-    while (str[i])
-        _putchar(str[i]), ++i;
-    _putchar(10);
-    
+	int i = 0;
+
+	while (str[i])
+		_putchar(str[i]), ++i;
+	_putchar(10);
 }

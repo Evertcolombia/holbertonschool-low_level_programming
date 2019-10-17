@@ -1,0 +1,57 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+/**
+ * _strlen - show the lenght of a string
+ * @s: pointe to  pass the array
+ *
+ * Return: none
+ */
+
+unsigned int _strlen(char *s)
+
+{
+        int a = 0;
+
+        while (s[a])
+                ++a;
+
+        return (a);
+}
+
+char *string_nconcat(char *s1, char *s2, unsigned int n)
+{
+	char *new;
+	unsigned int b, a, count = 0, c = 0, d;
+
+	if (s1 == NULL || s2 == NULL)
+		s1 = "", s2 = "";
+	for (int z = 0; z < 1; z++)
+	{
+		a = _strlen(s1);
+		b = _strlen(s2);
+	}
+	if (b >= n)
+		b = n;
+	c =  c + (a + b);
+
+	new = malloc(sizeof(char) * c + 1);
+	if (new == NULL)
+		return (NULL);
+	while (count <= c)
+	{
+		if (count > a)
+		{
+			new[count] = s2[d];
+			d++;
+		}
+		else
+			new[count] = s1[count];
+	}
+	count++;
+	new[count] = '\0';
+
+	return (new);
+	
+}

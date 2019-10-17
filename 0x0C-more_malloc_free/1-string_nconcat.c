@@ -58,6 +58,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		else
 			new[count] = s2[count - len1];
 	}
+	count++;
 	new[count] = '\0';
 
 	return (new);

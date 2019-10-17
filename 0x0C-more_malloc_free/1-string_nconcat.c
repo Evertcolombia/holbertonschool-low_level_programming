@@ -38,23 +38,15 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	if (n >= len2)
 		c = len1 + len2;
-	/*1*/
 	else
 		c = len1 + n;
-/*c + 1*/
+
 	new = malloc(sizeof(char) * (c + 1));
 	if (new == NULL)
 		return (NULL);
-	/*while (count <= c)*/
+
 	for (count = 0; count < c; count++)
 	{
-		/*if (count > len1)
-		{
-			new[count] = s2[d];
-			d++;
-		}
-		else
-			new[count] = s1[count];*/
 		if (count < len1)
 			new[count] = s1[count];
 		else

@@ -8,8 +8,8 @@
  */
 int main(void)
 {
-	unsigned long n = 612852475143;
-	unsigned long i, factor = -1;
+	long n = 612852475143;
+	long i, factor = -1;
 
 	while (n % 2 == 0)
 		n = n / 2, factor = 2;
@@ -23,7 +23,7 @@ int main(void)
 	if (n > 2)
 	{
 		factor = n;
-		printf("%lu", factor);
+		printf("%li", factor);
 	}
 	putchar(10);
 

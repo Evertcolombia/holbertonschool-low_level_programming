@@ -6,7 +6,6 @@
  *
  * Return: value
  */
-
 int main(void)
 {
 	unsigned long n = 612852475143;

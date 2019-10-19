@@ -1,4 +1,18 @@
 #include "holberton.h"
+/**
+ * _strlen - show the lenght of a string
+ * @s: pointe to  pass the array
+ *
+ * Return: none
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		++i;
+	return (i);
+}
 
 /**
  * *_strcat - concatenate dos strings
@@ -10,20 +24,14 @@
 
 char *_strcat(char *dest, char *src)
 {
-	int length;
-	int count = 0;
-	int a = 0;
+	int i, a, b;
 
-	while (dest[a])
-		++a;
-	length = a;
+	a = _strlen(dest) - 1;
+	b = _strlen(src);
 
-	while (count <= length && src[count] != '\0')
-	{
-		dest[length + count] = src[count];
-		count++;
-	}
-	dest[length + count] = '\0';
-
+	for (i = 0; i <= b; i++)
+		dest[a + i] = src[i];
+	
+	i++, dest[a + i] = '\0';
 	return (dest);
 }

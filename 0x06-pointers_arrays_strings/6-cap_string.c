@@ -17,12 +17,20 @@ char *cap_string(char *str)
 		(str[i] == 123) || (str[i] == 125) ||
 		(str[i] == 46) || (str[i] == 10))
 		{
-			if (str[i + 1] >= 97 && str[i + 1] <= 122)
-				str[i + 1] = (str[i + 1] - 32);
+			i++;
+			if (str[i] >= 97 && str[i] <= 122)
+				str[i] = (str[i] - 32);
+			i--;
 		}
 
 		else if (str[i] == 9)
+		{
 			str[i] = (str[i] + 23);
+			i++;
+			if (str[i] >= 97 && str[i] <= 122)
+				str[i] = (str[i] - 32);
+			i--;
+		}
 		i++;
 	}
 	return (str);

@@ -24,5 +24,7 @@ char *cap_string(char *str)
 		else if (str[i] == 9)
 			str[i] = (str[i] + 23);
 		i++;
-	} return (str);
+	}
+	str[i] = '\0';
+	return (str);
 }

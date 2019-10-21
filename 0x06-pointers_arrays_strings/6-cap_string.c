@@ -25,6 +25,5 @@ char *cap_string(char *str)
 			str[i] = (str[i] + 23);
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }

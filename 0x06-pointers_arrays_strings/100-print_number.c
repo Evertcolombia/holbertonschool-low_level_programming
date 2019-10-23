@@ -11,7 +11,10 @@ void print_number(int n)
 	int a;
 
 	if (n < 0)
-		_putchar(45), a = n * -1;
+	{
+		_putchar(45);
+		 a = n * -1;
+	}
 	else
 		 a = n;
 	if (n / 10)

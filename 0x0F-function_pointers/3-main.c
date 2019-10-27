@@ -17,11 +17,8 @@ int main(int argc, char *argv[])
 	if (argc != 4)
 		return (__RETURN__(98));
 
-	if (atoi(argv[3]))
-	{
-		if (*argv[2] == '%' || *argv[2] == '/')
+	if (atoi(argv[3]) == 0 && (*argv[2] == '%' || *argv[2] == '/'))
 			return (__RETURN__(100));
-	}
 
 	point = get_op_func(argv[2]);
 	if (point == NULL)

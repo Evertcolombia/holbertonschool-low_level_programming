@@ -26,7 +26,7 @@ void print_all(const char * const format, ...)
 	while (format != NULL && format[i])
 	{
 		j = 0;
-		while(j < 4)
+		while (j < 4)
 		{
 			if (format[i] == *form_t[j].type)
 			{

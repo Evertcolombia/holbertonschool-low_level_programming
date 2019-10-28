@@ -25,13 +25,15 @@ void print_all(const char * const format, ...)
 
 	while (format != NULL && format[i])
 	{
-		for (j = 0; j < 4; j++)
+		j = 0;
+		while(j < 4)
 		{
 			if (format[i] == *form_t[j].type)
 			{
 				form_t[j].f(separator, ap);
 				separator = ", ";
 			}
+			j++;
 		}
 		i++;
 	}

@@ -15,7 +15,7 @@ int _strlen(const char *s);
 list_t *add_node_end(list_t **head, const char *str)
 {
 	list_t *last_node;
-	list_t *order_node = *head;
+	list_t *tmp_node = *head;
 
 	if (head == NULL)
 		return (NULL);
@@ -33,10 +33,10 @@ list_t *add_node_end(list_t **head, const char *str)
 		return (last_node);
 	}
 
-	while (order_node->next != NULL)
-		order_node = order_node->next;
+	while (tmp_node->next != NULL)
+		tmp_node = tmp_node->next;
 
-	order_node->next = last_node;
+	tmp_node->next = last_node;
 	return (last_node);
 }
 

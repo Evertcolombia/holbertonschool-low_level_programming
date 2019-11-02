@@ -1,11 +1,16 @@
 #include "lists.h"
 #include <stdlib.h>
 
+/**
+ * free_list - Frees the heap for a list
+ * @head: linked list
+ *
+ * Return: none
+ */
 void free_list(list_t *head)
 {
 	list_t *tmp_node;
-	/*tmp_node = head;*/
-	
+
 	while (head != NULL)
 	{
 		tmp_node = head, head = head->next;

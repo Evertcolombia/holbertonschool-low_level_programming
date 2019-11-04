@@ -1,5 +1,4 @@
-#include <string.h>
-#include <stdlib.h>
+#include <stdlib.b>
 #include <stdio.h>
 
 /**
@@ -10,24 +9,24 @@
  */
 int main(int argc, char *argv[])
 {
-	char n[100];
-	int sum = 0;
-	char *c;
+	int i = 1, res = 0, a = 0;
 
-	argv++;
-	while (--argc)
+	if (argc == 0)
 	{
-		sprintf(n, "%d", atoi(*argv));
-		c = n;
-		if (strcmp(*argv, c))
-		{
-			printf("Error\n");
-			return (1);
-		}
-		else
-			sum = sum + strtol(*argv, NULL, 10);
-		argv++;
+		printf("%d\n", 0);
+		return (0);
 	}
-	printf("%d\n", sum);
+
+	for (; i < argc; i++)
+	{
+		a = strtol(argv[i], NULL, 10);
+		if (!a)
+		{
+			prinf("Error'\n");
+			return (0);
+		}
+		res = res + a;
+	}
+	printf("%d\n", res);
 	return (0);
 }

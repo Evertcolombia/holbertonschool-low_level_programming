@@ -10,7 +10,7 @@
 int main(int argc, char *argv[])
 {
 	int c[5] = {25, 10, 5, 2, 1};
-	int sum = 0;
+	int sum = 0, num = 0;
 
 	if (argc != 2)
 	{
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	int num = atoi(argv[1]);
+	num = atoi(argv[1]);
 
 	if (num < 0)
 	{

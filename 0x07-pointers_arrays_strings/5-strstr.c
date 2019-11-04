@@ -1,27 +1,24 @@
 #include <stdlib.h>
 
 /**
- * *_strpbrk - searches string for any set of bytes
- * @s: pointer to a string
- * @accept: pointer to a string
+ * *_strstr - searches string for any set of bytes
+ * @haystack: pointer to a string
+ * @needle: pointer to a string
  * Return: pointer
  */
 char *_strstr(char *haystack, char *needle)
 {
 		if (needle == '\0')
-			return(haystack);
+			return (haystack);
 
-		while(*haystack)
+		while (*haystack)
 		{
 			if (*haystack == *needle)
-			{
 				return (haystack);
-			}
 			haystack++;
-			
 		}
 
 		if (*haystack != *needle)
-			return(NULL);
+			return (NULL);
 		return (0);
 }

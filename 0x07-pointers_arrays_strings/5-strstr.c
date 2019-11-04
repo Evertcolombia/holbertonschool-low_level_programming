@@ -1,7 +1,4 @@
-
-
-
-
+#include <stdlib.h>
 
 /**
  * *_strpbrk - searches string for any set of bytes
@@ -11,18 +8,17 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-        int b;
+		if (needle == '\0')
+			return(haystack);
 
-        while (*haystack != '\n')
-        {
-                for (b = 0; needle[b] != '\0'; b++)
-                {
-                        if (*haystack == needle[b])
-                        {
-                                return (haystack);
-                        }
-                }
-                haystack++;
-        }
-        return (0);
+		while(*haystack)
+		{
+			if (*haystack == *needle)
+			{
+				return (haystack);
+			}
+			haystack++;
+		
+		}
+		return (0);
 }

@@ -1,4 +1,4 @@
-#include <stdlib.b>
+#include <stdlib.h>
 #include <stdio.h>
 
 /**
@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
 		a = strtol(argv[i], NULL, 10);
 		if (!a)
 		{
-			prinf("Error'\n");
-			return (0);
+			printf("Error\n");
+			return (1);
 		}
 		res = res + a;
 	}

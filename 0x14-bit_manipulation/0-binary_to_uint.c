@@ -37,9 +37,9 @@ unsigned int binary_to_uint(const char *b)
  */
 int _strlen(const char *s)
 {
-int a = 0;
+        int a = 0;
 
         while (s[a])
         ++a;
         return (a);
-m
+}

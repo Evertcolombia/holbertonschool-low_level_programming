@@ -7,7 +7,7 @@
 /**
  * read_textfile - read a file
  * @filename: pointer to a file
- * @: letters: letters total
+ * @letters: letters total
  *
  * Return: counter
  */

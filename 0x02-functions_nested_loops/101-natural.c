@@ -7,17 +7,13 @@
  */
 int main(void)
 {
-	int num, mul3 = 0, mul5 = 0, total;
+	int num, sum;
 
 	for (num = 1; num < 1024; num++)
 	{
-		if (num % 3 == 0)
-			mul3 = mul3 + num;
-		if (num % 5 == 0)
-			mul5 = mul5 + num;
-		mul3 = mul3, mul5 = mul5;
+		if (num % 3 == 0 || num % 5 == 0)
+			sum += num;
 	}
-	total = mul3 + mul5;
-	printf("%d", total), putchar(10);
+	printf("%d", sum), putchar(10);
 	return (0);
 }

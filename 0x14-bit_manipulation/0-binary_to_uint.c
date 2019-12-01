@@ -1,8 +1,7 @@
 #include "holberton.h"
 #include <stdio.h>
 
-int _strlen(const char *s);
-
+int _strlen(const char *b)
 /**
  * binary_to_uint - converts in to binary
  * @b: array

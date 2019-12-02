@@ -15,14 +15,13 @@ int main(void)
 		sum = num_1 + num_2;
 		num_1 = num_2;
 		num_2 = sum;
+		
+		if (sum % 2 == 0)
+			total += sum;
 
-		if (num_1 % 2 == 0)
-			total += num_1;
-		else if (num_2 % 2 == 0)
-			total += num_2;
 
 	}
-	printf("%lu\n", total);
+	printf("%lu", total);
 	putchar(10);
 	return (0);
 }

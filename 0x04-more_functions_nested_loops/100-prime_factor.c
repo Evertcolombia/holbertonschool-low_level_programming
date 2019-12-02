@@ -27,5 +27,5 @@ int main(void)
 	}
 	putchar(10);
 
-	return (factor);
+	return (0);
 }

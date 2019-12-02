@@ -15,15 +15,6 @@ int main(void)
 		res = f + f1;
 		f = f1, f1 = res;
 
-		/*if (res > 9)
-		{
-			if (res > 99)
-				printf("%lu", res);
-			else
-				printf("%lu", res);
-		}
-		else
-			printf("%lu", res);*/
 		printf("%lu", res);
 		if (count != 49)
 			putchar(44), putchar(32);

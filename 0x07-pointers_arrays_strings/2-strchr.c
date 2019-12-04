@@ -1,3 +1,7 @@
+#include "holberton.h"
+
+int _strlen(char *s);
+
 /**
  * *_strchr - locates a character in a string
  * @s: pointer to a string
@@ -7,23 +11,33 @@
 char *_strchr(char *s, char c)
 {
 	int i = 0;
-	int length;
-	char *r = 0;
+	int length = _strlen(s);
+	char *r;
 
-	while (s[i])
-		++i;
-	length = i;
-	i = 0;
-
-	for (; i <= length; i++)
+	while (i < length)
 	{
 		if (s[i] ==  c)
 		{
 			r = &s[i];
-			break;
+			return (r);
 		}
-		else
-			s = s + 1;
+		i++;
 	}
-	return (r);
+	return (NULL);
+}
+
+/**
+ * _strlen - show the lenght of a string
+ * @s: pointe to  pass the array
+ *
+ * Return: none
+ */
+
+int _strlen(char *s)
+{
+	int a = 0;
+
+	while (s[a])
+		++a;
+	return (a);
 }

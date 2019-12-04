@@ -12,7 +12,7 @@ char *_strchr(char *s, char c)
 {
 	int i = 0;
 	int length = _strlen(s);
-	char *r = 0;
+	char *r = '\0';
 
 	while (i < length)
 	{

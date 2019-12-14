@@ -1,8 +1,8 @@
 #include "lists.h"
 
 /**
- * free_dlistint - free a double linked list
- * @head: head of the double list
+ * free_dlistint - frees a double linked list
+ * @h: head
  *
  * Return: none
  */
@@ -11,7 +11,7 @@ void free_dlistint(dlistint_t *head)
 	dlistint_t *tmp;
 
 	if (head == NULL)
-		exit (0);
+		exit(0);
 	tmp = head;
 	if (head->prev == NULL && head->next == NULL)
 	{

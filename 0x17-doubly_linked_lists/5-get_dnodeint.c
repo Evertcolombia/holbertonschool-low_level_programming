@@ -16,17 +16,13 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 		return (NULL);
 	tmp = head;
 
-	if (tmp->prev == NULL)
+	while (tmp != NULL)
 	{
-		while (tmp != NULL)
+		if (node_data == index)
 		{
-			if (node_data == index)
-			{
-				printf("index: %d\n", node_data);
-				return (tmp);
-			}
-			node_data++;
-			tmp = tmp->next;
+			return (tmp);
 		}
+		node_data++;
+		tmp = tmp->next;
 	} return (NULL);
 }

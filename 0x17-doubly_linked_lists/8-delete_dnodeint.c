@@ -33,7 +33,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			tmp->next = tmp->next->next;
 			tmp->prev = (tmp->next)->prev;
 			free(delete);
-			printf("no es 0\n");
 			return (1);
 		}
 		compare++;

@@ -1,7 +1,5 @@
 #include "hash_tables.h"
 
-int _strlen(const char *s);
-
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
@@ -9,8 +7,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL)
 		return (0);
-	if (_strlen(key) == 0)
-		return (0);
+	
 	/*if (key == NULL)
 		return(0);*/
 
@@ -36,8 +33,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 	{
-		/*printf("Hubo una collision \n");*/
-		/*printf("anterior nodo en next ahora solo apunta a null\n");*/
+		if (strcmp(key, ht->array[index]->key) == 0)
+		{
+			free(ht->array[index]->value);
+			ht->array[index]->value = strdup(value);
+			return (1);
+		}
 		new_node->next = ht->array[index];
 		/*printf("new node apunta a header \n");*/
 		ht->array[index] = new_node;
@@ -46,21 +47,3 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	return (0);
 }
-
-/**
- * _strlen - show the lenght of a string
- * @s: pointe to  pass the array
- *
- * Return: none
- */
-
-int _strlen(const char *s)
-{
-	int a = 0;
-
-	while (s[a])
-		++a;
-
-	return (a);
-}
-

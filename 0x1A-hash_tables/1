@@ -8,7 +8,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (ht == NULL)
 		return(0);
 
-	if (key == NULL)
+	if (key == NULL || key == "")
 		return(0);
 
 	if (value == NULL)
@@ -24,22 +24,15 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		
 	if (ht->array[index] == 0)
 	{
-		/*printf("No hay collision\n");*/
 		new_node->next = ht->array[index];
-                /*printf("new node apunta a head \n");*/
-		ht->array[index] = new_node;
-		/*printf("head apunta a new node \n");*/
+		ht->arra[index] = new_node;
 		return (1); /*falta algo en return*/
 	}
 	else
 	{
-		/*printf("Hubo una collision \n");*/
 		ht->array[index]->next = NULL;
-		/*printf("anterior nodo en next ahora solo apunta a null\n");*/
 		new_node->next = ht->array[index];
-		/*printf("new node apunta a header \n");*/
 		ht->array[index] = new_node;
-		/*printf("HEADER APUNTA A  new node\n");*/
 		return (1);
 	}
 }

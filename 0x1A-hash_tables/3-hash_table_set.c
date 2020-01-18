@@ -34,7 +34,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	else
 	{
 		/*printf("Hubo una collision \n");*/
-		ht->array[index]->next = NULL;
+		/*ht->array[index]->next = NULL;*/
 		/*printf("anterior nodo en next ahora solo apunta a null\n");*/
 		new_node->next = ht->array[index];
 		/*printf("new node apunta a header \n");*/

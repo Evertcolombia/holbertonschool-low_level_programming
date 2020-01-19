@@ -13,20 +13,23 @@ void hash_table_print(const hash_table_t *ht)
 	if (ht == NULL)
 		return;
 
+	i = 0;
 	printf("{");
-	for (i = 0; i < ht->size; i++)
+	while (i < th->size)
 	{
-		if (ht->array[i] == NULL)
-			continue;
-		tmp = ht->array[i];
-		while (tmp != NULL)
+		if (ht->array[i] != NULL)
 		{
-			if (flat > 0)
-				printf(", ");
-			printf("'%s': '%s'", tmp->key, tmp->value);
-			flat++;
-			tmp = tmp->next;
-		}
+			tmp = ht->array[i];
+			while (tmp != NULL)
+			{
+				if (flat > 0)
+					printf(", ");
+				printf("'%s': '%s'", tmp->key, tmp->value);
+				flat++;
+				tmp = tmp->next;
+			} i++;
+		} i++;
+		continue;
 	}
 	printf("}\n");
 }

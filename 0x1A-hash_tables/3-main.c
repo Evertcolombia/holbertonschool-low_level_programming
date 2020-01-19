@@ -23,6 +23,15 @@ int main(void)
     hash_table_set(ht, "synaphea", "holberton");
     hash_table_set(ht, "redescribed", "urites");
     hash_table_set(ht, "dram", "holberton");
+    hash_table_set(ht, "hetairas", "holberton");
+    hash_table_set(ht, "mentioner", "holberton");
+    hash_table_set(ht, "heliotropes", "neurospora");
+    hash_table_set(ht, "depravement", "serafins");
+    hash_table_set(ht, "stylist", "holberton");
+    hash_table_set(ht, "joyful", "holberton");
+    hash_table_set(ht, "synaphea", "holberton");
+    hash_table_set(ht, "redescribed", "urites");
+    hash_table_set(ht, "dram", "holberton");
     /*printf("pasa toda la function main\n");*/
     return (EXIT_SUCCESS);
 }

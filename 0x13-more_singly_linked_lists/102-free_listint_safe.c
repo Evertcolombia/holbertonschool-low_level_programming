@@ -1,11 +1,17 @@
 #include "lists.h"
 
+/**
+ * free_listint_safe - free safe a list
+ * @h: linked lst
+ *
+ * Return: count of nodes
+ */
 size_t free_listint_safe(listint_t **h)
 {
 	size_t count = 0;
 	listint_t *tmp = NULL;
 
-	while(*h != NULL)
+	while (*h != NULL)
 	{
 		count++;
 		tmp = *h;
@@ -15,9 +21,8 @@ size_t free_listint_safe(listint_t **h)
 		{
 			free(tmp->next);
 			*h = NULL;
-			return(count);
+			return (count);
 		}
-		
 	}
 	*h = NULL;
 	return (count);

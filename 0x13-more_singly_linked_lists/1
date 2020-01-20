@@ -1,0 +1,26 @@
+#include "lists.h"
+
+listint_t *reverse_listint(listint_t **head)
+{
+	listint_t *tmp = NULL, *reverse_head = NULL;;
+
+	if (*head == NULL)
+		return (NULL);
+
+	reverse_head = *head;
+	tmp = *head;
+	while (*head != NULL)
+	{
+		printf("pasa\n");
+		/*if (tmp->next)
+		{	
+			(tmp->next)->next = tmp;
+			tmp = tmp->next;
+		}*/
+		*head = (*head)->next;
+	}
+	reverse_head->next = NULL;
+
+	return (tmp);
+}
+

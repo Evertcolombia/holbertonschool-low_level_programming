@@ -1,5 +1,11 @@
 #include "lists.h"
 
+/**
+ * print_listint_safe - print a list
+ * @head: linked list
+ *
+ * Return: count of nodes
+ */
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t count = 0;
@@ -9,12 +15,10 @@ size_t print_listint_safe(const listint_t *head)
 		if ((head->next) >= head)
 		{
 			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
-			return (nodes);
+			return (count);
 		}
 		printf("[%p] %d\n", (void *)head, head->n);
 		count++;
 		head = head->next;
-		
-	}
-	return (count);
+	} return (count);
 }

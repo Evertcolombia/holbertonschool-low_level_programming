@@ -45,4 +45,8 @@ typedef struct shash_table_s
 
 /* Protoypes */
 shash_table_t *shash_table_create(unsigned long int size);
+int shash_table_set(shash_table_t *ht, const char *key, const char *value);
+unsigned long int hash_djb2(const unsigned char *str);
+unsigned long int key_index(const unsigned char *key, unsigned long int size);
+
 #endif  /* HASH_T_PHP*/

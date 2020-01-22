@@ -31,11 +31,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value){
 	shash_node_t *s_list = NULL, *tmp = NULL;
 	unsigned long id;
 
-	if (ht == NULL || !key || !value || !strcmp(key, ""))
+	if (ht == NULL || !key || !value)
 		return (0);
 
 	id = key_index((unsigned char *) key, ht->size);
-
 
 	if (ht->array[id] != NULL)
 	{
@@ -68,12 +67,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value){
 	s_list->next = ht->array[id];
 	ht->array[id] = s_list;
 
-	if (!(ht->shead))
-	{
-		ht->shead = s_list;
-		ht->stail = s_list;
-	}
-	else
+	if (ht->shead)
 	{
 		tmp = ht->shead;
 		while (tmp)
@@ -98,5 +92,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value){
 			s_list->sprev = ht->stail;
 			ht->stail = s_list;
 		}
+	}
+	else
+	{
+		ht->shead = s_list;
+		ht->stail = s_list;
 	} return (1);
 }

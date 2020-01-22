@@ -1,5 +1,5 @@
-#ifndef "HASH_T_PHP"
-#define "HASH_T_PHP"
+#ifndef S__HASH_T
+#define S_HASH_T
 
 #include <stdlib.h>
 #include <stdio.h>

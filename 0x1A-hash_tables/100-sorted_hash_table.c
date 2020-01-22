@@ -28,42 +28,58 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 
 int shash_table_set(shash_table_t *ht, const char *key, const char *value){
-	shash_node_t *new_node = NULL;
-	shash_node_t *s_list = NULL;
+	shash_node_t *s_list = NULL, *tmp = NULL;
 	unsigned long id;
 
-	if (ht == NULL)
+	if (ht == NULL || !key || !value || !strcmp(key, ""))
 		return (0);
-
 
 	id = key_index((unsigned char *) key, ht->size);
 
+
 	if (ht->array[id] != NULL)
 	{
-		if (strcmp(key, ht->array[id]->key) == 0)
+		while (ht->array[id])
 		{
-			free(ht->array[id]->value);
-			ht->array[id]->value = strdup(value);
-			return (1);
+			if (strcmp(ht->array[id]->key, key) == 0)
+                	{
+                        	free(ht->array[id]->value);
+	                        ht->array[id]->value = strdup(value);
+        	                return (1);
+               		}
+			ht->array[id] = ht->array[id]->next;
 		}
-	}
-		
-	if ((new_node = malloc(sizeof(shash_node_t *))) == NULL)
-		return (0);
-	new_node->key = strdup(key);
-	new_node->value = strdup(value);
-	new_node->next = ht->array[id];
-	ht->array[id] = new_node;
 
-	if ((s_list = malloc(sizeof(shash_node_t *))) == NULL)
-                return (0)
-	s_list->key = strdup(key);
-	s_list->value = strdup(value);
-	s_list->sprev = NULL;
-	s_list->snext = NULL;
-	
-	th->shead = s_list;
-	th->stail = s_list;
+		if ((s_list = malloc(sizeof(shash_node_t))) == NULL)
+			return (0);
+		s_list->key = strdup(key);
+                s_list->value = strdup(value);
+		s_list->next = ht->array[id];
+                s_list->sprev = NULL;
+                s_list->snext = NULL;
+		ht->array[id] = s_list;
+		return (1);
+	}
+
+	if ((s_list = malloc(sizeof(shash_node_t))) == NULL)
+                        return (0);
+
+	if (!(ht->shead))
+	{
+		ht->shead = s_list;
+		ht->stail = s_list;
+	}
+	else
+	{
+		tmp = ht->head
+
+		s_list->key = strdup(key);
+		s_list->value = strdup(value);
+		s_list->next = ht->array[id];
+		s_list->sprev = NULL;
+		s_list->snext = NULL;
+
+		ht->array[id] = s_list;
 
 	return (1);
 }

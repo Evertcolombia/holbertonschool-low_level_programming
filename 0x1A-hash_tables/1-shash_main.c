@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "hash_tables.h"
+#include "hash_tables_php.h"
 
 /**
  * main - check the code for Holberton School students.

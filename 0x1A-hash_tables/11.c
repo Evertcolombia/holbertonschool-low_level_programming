@@ -31,7 +31,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value){
 	shash_node_t *s_list = NULL, *tmp = NULL;
 	unsigned long id;
 
-	if (ht == NULL || !key || !value)
+	if (ht == NULL || !key)
 		return (0);
 
 	id = key_index((unsigned char *) key, ht->size);
@@ -110,21 +110,45 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	shash_node_t *tmp = NULL;
 	unsigned long id;
 
-	if (ht == NULL || !key || !value)
+	if (ht == NULL || !key)
                 return (0);
 
 	id = key_index((unsigned char *) key, ht->size);
 
 	if (ht->array[id] != NULL)
 	{
-		tmp = ht->aray[id];
+		tmp = ht->array[id];
 		while (tmp)
 		{
 			if (strcmp(key, tmp->key) == 0)
-				return (tmp->value);
+				return (strdup(tmp->value));
 			tmp = tmp->next;
 		}
 	}
-	else
-		return (NULL);
+	return (NULL);
+}
+
+
+void shash_table_print(const shash_table_t *ht)
+{
+	int flat = 0;
+	shash_node_t *tmp = NULL;
+
+	if (ht == NULL)
+		return;
+
+	if (ht->shead == NULL)
+		return;
+
+	tmp = ht->shead;
+
+	printf("{");
+	while (tmp != NULL)
+	{
+		if (flat > 0)
+			printf(", ");
+		printf("'%s' : '%s'", tmp->key, tmp->value);
+		flat++;
+		tmp = tmp->snext;
+	} printf("}\n");
 }

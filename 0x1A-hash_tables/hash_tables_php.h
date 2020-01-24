@@ -49,5 +49,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value);
 unsigned long int hash_djb2(const unsigned char *str);
 unsigned long int key_index(const unsigned char *key, unsigned long int size);
 char *shash_table_get(const shash_table_t *ht, const char *key);
+void shash_table_print(const shash_table_t *ht);
 
 #endif  /* HASH_T_PHP*/

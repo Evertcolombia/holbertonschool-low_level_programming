@@ -124,8 +124,33 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 		while (tmp)
 		{
 			if (strcmp(key, tmp->key) == 0)
-				return (tmp->value);
+				return (strdup(tmp->value));
 			tmp = tmp->next;
 		}
 	} return (NULL);
+}
+
+
+void shash_table_print(const shash_table_t *ht)
+{
+	int flat = 0;
+	shash_node_t *tmp = NULL;
+
+	if (ht == NULL)
+		return;
+
+	if (ht->shead == NULL)
+		return;
+
+	tmp = ht->shead;
+
+	printf("{");
+	while (tmp != NULL)
+	{
+		if (flat > 0)
+			printf(", ");
+		printf("'%s' : '%s'", tmp->key, tmp->value);
+		flat++;
+		tmp = tmp->snext;
+	} printf("}\n");
 }

@@ -29,7 +29,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
-	shash_node_t *s_list = NULL, *tmp = NULL;
+	shash_node_t *s_list = NULL/*, *tmp = NULL*/;
 	unsigned long id;
 
 	if (ht == NULL || !key)
@@ -60,7 +60,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (1);
 	}
 
-	if ((s_list = malloc(sizeof(shash_node_t))) == NULL)
+	if (set_new_index(ht, key, value, id) == 0)
+		return (0);
+	else
+		return (1);
+	/*if ((s_list = malloc(sizeof(shash_node_t))) == NULL)
                         return (0);
 	s_list->key = strdup(key);
 	s_list->value = strdup(value);
@@ -102,7 +106,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			}
 			tmp = tmp->snext;
 		}
-	} return (1);
+	}*/
+	/*return (1);*/
 }
 
 
@@ -155,7 +160,62 @@ void shash_table_print(const shash_table_t *ht)
 }
 
 
-void shash_table_print_rev(const shash_table_t *ht)
+/*void shash_table_print_rev(const shash_table_t *ht)
 {
 
+}*/
+
+int set_new_index(shash_table_t *ht, const char *key, const char *value, unsigned long id)
+{
+	shash_node_t *tmp = NULL, *s_list = NULL;
+
+	if(ht == NULL || !key)
+		return (0);
+
+	
+	if ((s_list = malloc(sizeof(shash_node_t))) == NULL)
+                        return (0);
+
+	s_list->key = strdup(key);
+	s_list->value = strdup(value);
+	s_list->next = ht->array[id];
+	ht->array[id] = s_list;
+
+	if (ht->shead == NULL)
+        {
+                ht->shead = s_list;
+                ht->stail = s_list;
+        }
+	else
+	{
+		tmp = ht->shead;
+
+		/*if (tmp == NULL)
+                {
+			ht->stail->next = s_list;
+			s_list->sprev = ht->stail;
+			ht->stail = s_list;
+		}*/
+
+		while (tmp)
+		{
+			if (strcmp(s_list->key, tmp->key) <= 0)
+			{
+				s_list->snext = tmp;
+				s_list->sprev = tmp->sprev;
+				if (tmp->sprev == NULL)
+				{
+					ht->shead = s_list;
+				}
+				else
+				{
+					tmp->sprev->snext = s_list;
+				}
+				tmp->sprev = s_list;
+				break;
+			}
+			tmp = tmp->snext;
+		}
+	}
+	return (1);
 }

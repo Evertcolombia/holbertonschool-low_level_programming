@@ -27,22 +27,24 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 
-int shash_table_set(shash_table_t *ht, const char *key, const char *value){
+int shash_table_set(shash_table_t *ht, const char *key, const char *value)
+{
 	shash_node_t *s_list = NULL, *tmp = NULL;
 	unsigned long id;
 
-	if (ht == NULL || !key || !value)
+	if (ht == NULL || !key)
 		return (0);
 
 	id = key_index((unsigned char *) key, ht->size);
 	if (ht->array[id] != NULL)
-	{
+	{	
 		while (ht->array[id])
 		{
 			if (strcmp(ht->array[id]->key, key) == 0)
                 	{
                         	free(ht->array[id]->value);
 	                        ht->array[id]->value = strdup(value);
+				printf("%s", ht->array[id]->value);
         	                return (1);
                		}
 			ht->array[id] = ht->array[id]->next;
@@ -56,15 +58,17 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value){
                 s_list->sprev = NULL;
                 s_list->snext = NULL;
 		ht->array[id] = s_list;
+		printf("no habia node que concoradara se seteo el value: %s\n", s_list->value);
 		return (1);
 	}
 
 	if ((s_list = malloc(sizeof(shash_node_t))) == NULL)
                         return (0);
 	s_list->key = strdup(key);
-	s_list->key = strdup(value);
+	s_list->value = strdup(value);
 	s_list->next = ht->array[id];
 	ht->array[id] = s_list;
+	printf("EL index etaba vacio  value: %s and key %s\n", s_list->value, s_list->key);
 
 	if (ht->shead)
 	{
@@ -75,7 +79,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value){
 			{
 				s_list->snext = tmp;
 				s_list->sprev = tmp->sprev;
-
 				if (tmp->sprev == NULL)
 				{
 					ht->shead = s_list;
@@ -110,21 +113,19 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	shash_node_t *tmp = NULL;
 	unsigned long id;
 
-	if (ht == NULL || !key || !value)
+	if (ht == NULL || !key)
                 return (0);
 
 	id = key_index((unsigned char *) key, ht->size);
 
 	if (ht->array[id] != NULL)
 	{
-		tmp = ht->aray[id];
+		tmp = ht->array[id];
 		while (tmp)
 		{
 			if (strcmp(key, tmp->key) == 0)
 				return (tmp->value);
 			tmp = tmp->next;
 		}
-	}
-	else
-		return (NULL);
+	} return (NULL);
 }

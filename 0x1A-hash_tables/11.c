@@ -44,7 +44,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
                 	{
                         	free(ht->array[id]->value);
 	                        ht->array[id]->value = strdup(value);
-				printf("%s", ht->array[id]->value);
         	                return (1);
                		}
 			ht->array[id] = ht->array[id]->next;
@@ -58,7 +57,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
                 s_list->sprev = NULL;
                 s_list->snext = NULL;
 		ht->array[id] = s_list;
-		printf("no habia node que concoradara se seteo el value: %s\n", s_list->value);
 		return (1);
 	}
 
@@ -68,7 +66,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	s_list->value = strdup(value);
 	s_list->next = ht->array[id];
 	ht->array[id] = s_list;
-	printf("EL index etaba vacio  value: %s and key %s\n", s_list->value, s_list->key);
 
 	if (ht->shead)
 	{

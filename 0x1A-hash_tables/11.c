@@ -204,3 +204,11 @@ int set_new_index(shash_table_t *ht, const char *key, const char *value, unsigne
 	}
 	return (1);
 }
+
+void shash_table_delete(shash_table_t *ht)
+{
+	shash_node_t *tmp = NULL;
+
+	if (ht == NULL)
+		return;
+}

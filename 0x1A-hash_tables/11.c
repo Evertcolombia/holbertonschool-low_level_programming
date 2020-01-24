@@ -136,18 +136,19 @@ void shash_table_print(const shash_table_t *ht)
 	if (ht == NULL)
 		return;
 
-	if (ht->shead == NULL)
-		return;
-
-	tmp = ht->shead;
-
-	printf("{");
-	while (tmp != NULL)
+	if (ht->shead)
 	{
-		if (flat > 0)
-			printf(", ");
-		printf("'%s' : '%s'", tmp->key, tmp->value);
-		flat++;
-		tmp = tmp->snext;
-	} printf("}\n");
+		tmp = ht->shead;
+
+		printf("{");
+		while (tmp)
+		{
+			if (flat > 0)
+				printf(", ");
+			printf("'%s' : '%s'", tmp->key, tmp->value);
+			flat++;
+			tmp = tmp->snext;
+		}
+		printf("}\n");
+	}
 }

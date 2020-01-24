@@ -67,9 +67,22 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	s_list->next = ht->array[id];
 	ht->array[id] = s_list;
 
-	if (ht->shead)
+	if (ht->shead == NULL)
+        {
+                ht->shead = s_list;
+                ht->stail = s_list;
+        }
+	else
 	{
 		tmp = ht->shead;
+
+		if (tmp == NULL)
+                {
+			ht->stail->next = s_list;
+			s_list->sprev = ht->stail;
+			ht->stail = s_list;
+		}
+
 		while (tmp)
 		{
 			if (strcmp(s_list->key, tmp->key) <= 0)
@@ -89,18 +102,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			}
 			tmp = tmp->snext;
 		}
-
-		if (tmp == NULL)
-		{
-			ht->stail->next = s_list;
-			s_list->sprev = ht->stail;
-			ht->stail = s_list;
-		}
-	}
-	else
-	{
-		ht->shead = s_list;
-		ht->stail = s_list;
 	} return (1);
 }
 
@@ -151,4 +152,10 @@ void shash_table_print(const shash_table_t *ht)
 		}
 		printf("}\n");
 	}
+}
+
+
+void shash_table_print_rev(const shash_table_t *ht)
+{
+
 }

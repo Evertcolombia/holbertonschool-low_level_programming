@@ -3,23 +3,22 @@
 shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *table = NULL;
-	/*shash_node_t **array = NULL;*/
 
-	if (size < 1)
+	if (size == 0)
 		return(NULL);
 
-	if ((table = malloc(sizeof(shash_table_t ))) == NULL)
+	table = malloc(sizeof(shash_table_t ));
+	if (table == NULL)
 		return (NULL);
 
-	/*if((array = calloc(size, sizeof(shash_node_t *))) == NULL)*/
-        if((table->array = calloc(size, sizeof(shash_node_t *))) == NULL)
+        table->array = calloc(size, sizeof(shash_node_t *));
+	if (table->array == NULL)
 	{
 		free(table);
 		return (NULL);
 	}
 
 	table->size = size;
-	/*table->array = array;*/
 	table->shead = NULL;
 	table->stail = NULL;
 
@@ -29,10 +28,10 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long id;
+	unsigned long int id;
 	shash_node_t *s_list = NULL;
 
-	if (ht == NULL || !key)
+	if (ht == NULL || !strcmp(key, "") || key == NULL)
 		return (0);
 
 	id = key_index((unsigned char *) key, ht->size);

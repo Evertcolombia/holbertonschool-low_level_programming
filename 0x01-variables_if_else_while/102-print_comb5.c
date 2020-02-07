@@ -20,15 +20,5 @@ int main(void)
 				putchar(44), putchar(32);
 			}
 		}
-
-		/*if (i == 57 && j == 58)
-		{
-			if (d == 56)
-				c += 1, d = 0;
-			d += 1;
-
-			i = c, j = d + 1;
-		}*/
-		
 	} return (0);
 }

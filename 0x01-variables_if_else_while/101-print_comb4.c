@@ -7,26 +7,24 @@
  */
 int main(void)
 {
-	int num1, num2, num;
+	unsigned int i, j, c, d;
 
-	for (num = 48; num < 56; num++)
+	c = 48, d = 48, i = 49;
+
+	for (; i < 57; i++)
 	{
-		for (num1 = 49; num1 < 57; num1++)
+		j = i + 1;
+		for (; j <= 57; j++)
 		{
-			for (num2 = 50; num2 <= 57; num2++)
-			{
-				putchar(num);
-				putchar(num1);
-				putchar(num2);
-				if (num1 == 56 && num2 == 57 && num == 55)
-					putchar(10);
-				else
-				{
-					putchar(44);
-					putchar(32);
-				}
-			}
+			putchar(c), putchar(i), putchar(j);
+
+			if (c == 55 && i == 56 && j == 57)
+				putchar(10);
+			else
+				putchar(44), putchar(32);
 		}
+		if (i == 56)
+			c += 1, d += 1, i = d;
 	}
 	return (0);
 }

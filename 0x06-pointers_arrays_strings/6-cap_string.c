@@ -8,6 +8,9 @@ char *cap_string(char *str)
 {
 	int i = 0;
 
+	if (str[0] >= 97 && str[i] <= 122)
+		str[0] = (str[0] - 32);
+
 	while (str[i])
 	{
 		if ((str[i] == ',') || (str[i] == ';') ||

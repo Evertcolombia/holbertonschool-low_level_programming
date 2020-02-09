@@ -9,18 +9,16 @@
 int main(void)
 {
 
-int i;
-char hexadecimals[16] = "0123456789abcdef";
-char word;
+	int i;
+	char hexadecimals[] = "0123456789abcdef";
+	char word;
 
-i = 0;
-while (i < 16)
-{
-word = hexadecimals[i];
-putchar(word);
-i++;
-}
+	for (i = 0; i <= 16; i++)
+	{
+		word = hexadecimals[i];
+		putchar(word);
+	}
 
-putchar('\n');
-return (0);
+	putchar('\n');
+	return (0);
 }

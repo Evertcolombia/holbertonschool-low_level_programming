@@ -5,6 +5,7 @@ NAME = holberton
 RM = rm
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
+.PHONY = all fclean
 all: program
 	
 

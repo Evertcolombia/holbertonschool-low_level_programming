@@ -44,7 +44,7 @@ int binary_search(int *array, size_t size, int value)
  */
 void print_array(int *array, size_t i, size_t size)
 {
-	printf("Searching in Array: ");
+	printf("Searching in array: ");
 	while (i < size)
 	{
 		if (i + 1 == size)

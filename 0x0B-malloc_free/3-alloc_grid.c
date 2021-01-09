@@ -1,39 +1,34 @@
 #include <stdlib.h>
 #include "holberton.h"
-
 /**
  * alloc_grid - alloc grid
  * @width: width
  * @height: height
  * Return: array multidimensional
  */
+
 int **alloc_grid(int width, int height)
 {
-	int **table;
-	int a, b;
+	int i, c;
+	int **s;
 
 	if (width <= 0 || height <= 0)
 		return (NULL);
 
-	table = (int **)malloc(height * sizeof(int *));
-	if (table == NULL)
+	s = malloc(height * sizeof *s);
+	if (s == NULL)
 		return (NULL);
 
-	for (a = 0; a < height; a++)
+	for (i = 0; i < height; i++)
 	{
-		table[a] = (int *)malloc(width * sizeof(int));
-		if (table[a] == NULL)
+		s[i] = malloc(width * sizeof i);
+		if (s[i] == NULL)
 		{
-			free_grid(table, a);
-			 return (NULL);
+			free_grid(s, i);
+			return(NULL);
 		}
+		for (c = 0; c < width; c++)
+			s[i][c] = 0;
 	}
-	a = 0,  b = 0;
-
-	for (; a < height; a++)
-	{
-		for (; b < width; b++)
-			table[a][b] = 0;
-	}
-	return (table);
+	return (s);
 }

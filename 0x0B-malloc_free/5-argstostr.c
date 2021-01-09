@@ -1,46 +1,48 @@
+#include "holberton.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "holberton.h"
+
+/**
+ * argstostr - entry point
+ * @ac: int variable
+ * @av: char variable
+ *
+ * Return: s or NULL
+ */
 
 int _strlen(char *s);
-
 char *argstostr(int ac, char **av)
 {
-	char *ptr = NULL;
-	int  count = 0, b = 0, c = 0, i, len, argc = ac;
+	int len = 0, i, c, count = 0;
+	char *s = NULL;
 
 	if (ac == 0 || av == NULL)
-		return(NULL);
-
-	for (i = ac; i >= 0; i--)
-	{
-		b += _strlen(av[i]) + 1;
-	}
-	b++;
-
-	ptr = malloc(b * sizeof(char));
-	if (ptr == NULL)
 		return (NULL);
 
-	while (argc >= 0)
+	for (i = 1; i < ac; i++)
 	{
-		len = _strlen(av[c]);
-		for (ac = 0; ac < len; ac++)
-		{
-			ptr[count] = av[c][ac];
-			count++;
-		}
-		ptr[count] = '\n';
-		c++;
-		argc--;
+		len += _strlen(av[i]) + 1;
+		printf("%d, \n", len);
 	}
-	return (ptr);
+
+	s = malloc(len * sizeof s);
+	if (!s)
+		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		for (c = 0; av[i][c]; c++)
+			s[count++] = av[i][c];
+		s[count++] = 10;
+	}
+	return(s);
 }
 
 int _strlen(char *s)
 {
-	int i = 0;
-
+	int i;
+	
+	i = 0;
 	while (s[i])
 		i++;
 	return (i);

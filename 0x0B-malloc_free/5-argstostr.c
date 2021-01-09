@@ -1,6 +1,5 @@
 #include "holberton.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * argstostr - entry point
@@ -20,10 +19,7 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 
 	for (i = 1; i < ac; i++)
-	{
 		len += _strlen(av[i]) + 1;
-		printf("%d, \n", len);
-	}
 
 	s = malloc(len * sizeof s);
 	if (!s)

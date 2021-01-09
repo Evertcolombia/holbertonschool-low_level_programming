@@ -1,41 +1,41 @@
 #include <stdlib.h>
+#include "holberton.h"
 
 /**
- * *str_concat - concatenate two strings
+ * str_concat - concatenate two strings
  * @s1: string
  * @s2: string
  *
  * Return: pointer to a string (str)
  */
+
+int _strlen(char *s);
 char *str_concat(char *s1, char *s2)
 {
-	int i = 0, z = 0, h = 0, count, length, length1, lengthto;
-	char *str;
-
+	int a, b, c = 0, i = 0;
+	char *s = NULL;
+	
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
 
-	while (s1[i])
+	a = _strlen(s1);
+	b = _strlen(s2);
+	s = malloc(a + b * sizeof s);
+	if (s == NULL)
+		return(NULL);
+
+	for (; i < a + b; i++)
+		s[i] = i < a ? s1[i] : s2[c++];
+	return (s);
+}
+
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i])
 		i++;
-	length = i - 1;
-
-	while (s2[z])
-		z++;
-	length1 = z + 1;
-	lengthto = length + length1;
-
-	str = malloc(sizeof(char) * lengthto);
-	if (str == NULL)
-		return (NULL);
-
-	for (count = 0; count <= lengthto + 1; count++)
-	{
-		if (count > length)
-			str[count] = s2[h], h++;
-		else
-			str[count] = s1[count];
-	}
-	return (str);
+	return (i);
 }

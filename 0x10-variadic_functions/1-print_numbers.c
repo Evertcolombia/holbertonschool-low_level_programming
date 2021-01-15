@@ -1,7 +1,6 @@
-#include <stdio.h>
+#include "variadic_functions.h"
 #include <stdarg.h>
-#include <stdlib.h>
-
+#include <stdio.h>
 /**
  * print_numbers - prints all undefined arguments
  * @separator: char
@@ -11,19 +10,16 @@
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	va_list ap;
-	unsigned int i;
+	va_list arg_list;
+	unsigned int i = 0;
 
-	va_start(ap, n);
-	if (separator != NULL)
+	va_start(arg_list, n);
+	for (i = 0; i < n; i++)
 	{
-		for (i = 0; i < n; i++)
-		{
-			printf("%d", va_arg(ap, int));
-			if (i < (n - 1))
-				printf("%s", separator);
-		}
+		printf("%d", va_arg(arg_list, int));
+		if (separator != NULL && i < (n - 1))
+			printf("%s", separator);
 	}
-	va_end(ap);
-	putchar(10);
+	printf("\n");
+	va_end(arg_list);
 }

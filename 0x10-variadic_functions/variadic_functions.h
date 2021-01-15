@@ -12,9 +12,22 @@ void print_int(char *separator, va_list ap);
 void print_float(char *separator, va_list ap);
 void print_char_ptr(char *separator, va_list ap);
 
+/**
+ * struct format_types - Structure
+ * @type: value
+ * @f: pointer to function
+ *
+ * Description: structure for a dog
+ */
 typedef struct format_types
 {
 	char *type;
 	void (*f)(char *separator, va_list ap);
+	/**
+	 * @type: pointer to a value
+	 * @age: value with an float
+	 *
+	 Description: This structure is for a class dog
+	 */
 } f_dt;
 #endif /* _HOLBERTON_H_ */

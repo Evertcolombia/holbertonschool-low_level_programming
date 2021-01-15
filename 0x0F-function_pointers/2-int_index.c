@@ -1,12 +1,13 @@
-  /**
- * int_index - search for an element
- * @array: array integers
- * @size: value
- * @cmp: pointer function
- *
- * Return: i
+#include "function_pointers.h"
+/**
+  * int_index - entry point
+  * @array: array integers
+  * @size: value
+  * @cmp: pointer function
+  *
+  * Return: i
  */
- 
+
 int int_index(int *array, int size, int (*cmp)(int))
 {
 	int i;

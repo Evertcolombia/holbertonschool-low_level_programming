@@ -1,46 +1,43 @@
-#include <unistd.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * read_textfile - read a file
- * @filename: pointer to a file
- * @letters: letters total
+ * @filename: path to the file
+ * @letters: count of letters to read
  *
- * Return: counter
+ * Return: lenght printed buffer
  */
-size_t read_textfile(const char *filename, size_t letters)
-{
-	int fd, _strlen;
-	char *buffer;
 
-	/*if pointer to file is empty*/
+ssize_t read_textfile(const char *filename, size_t letters)
+{
+	int fd, file_len;
+	char *buf;
+
 	if (filename == NULL)
 		return (0);
 
-	/*open and read file*/
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
 
-	/*memory space for the buffer to prduce*/
-	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
+	buf = malloc(sizeof(char) * letters);
+	if (buf == NULL)
 		return (0);
 
-	/*read(file, start, numbert to read)*/
-	_strlen = read(fd, buffer, letters);
-
-	/*if the stdout  != to the len of the buffer return 0*/
-	if (write(STDOUT_FILENO, buffer, _strlen) != _strlen)
+	file_len = read(fd, buf, letters);
+	if (file_len == -1)
 		return (0);
 
-	/*close file descriptor*/
+	if (write(STDOUT_FILENO, buf, file_len) != file_len)
+		return (0);
+
 	close(fd);
-	/*free memory*/
-	free(buffer);
-	/*return len*/
-	return (_strlen);
+	free(buf);
+
+	return (file_len);
 }

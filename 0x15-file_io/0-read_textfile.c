@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "holberton.h"
-#include <stdio.h>
 
 /**
  * read_textfile - read a file
@@ -13,7 +12,7 @@
  * Return: lenght printed buffer
  */
 
-ssize_t read_textfile(const char *filename, size_t letters)
+size_t read_textfile(const char *filename, size_t letters)
 {
 	int fd, file_len;
 	char *buf;

@@ -15,23 +15,26 @@ int _strlen(char *s);
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int fd, len;
+	int fd, len, open_flags;
 
-	len = _strlen(text_content);
 
 	if (filename == NULL)
 		return (-1);
 
-	fd = open(filename, O_WRONLY | O_APPEND, 0600);
+	open_flags = O_WRONLY | O_APPEND;
+	fd = open(filename, open_flags);
 	if (fd == -1)
 		return (-1);
 
 	if (text_content == NULL)
+		close(fd);
 		return (1);
 
+	len = _strlen(text_content);
 	if (write(fd, text_content, len) != len)
 		return (-1);
 
+	close(fd);
 	return (1);
 }
 

@@ -4,54 +4,66 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void error_mannage(char *msg, int code, char *argument)
-{
-	dprintf(STDERR_FILENO, msg, argument);
-	exit(code);
-	return;
-}
-
-int read_file(char *file_name)
+/**
+ * read_file - create file
+ * @fn: file name
+ *
+ * Return: file descriptor
+ */
+int read_file(char *fn)
 {
 	int fRead;
 
-	fRead = open(file_name, O_RDONLY);
+	fRead = open(fn, O_RDONLY);
 	if (fRead == -1)
-		error_mannage("Error: Can't read from file %s\n", 98, file_name);
-	return fRead;
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", fn), exit(98);
+	return (fRead);
 }
 
-int create_file(char *file_name)
+/**
+ * create_file - create a file with a fd
+ * @fn: char filename
+ *
+ * Return: int fd
+ */
+int create_file(char *fn)
 {
 	int fd, openFlags;
 	mode_t filePerms;
 
 	openFlags = O_WRONLY | O_CREAT | O_TRUNC;
-	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	fd = open(file_name, openFlags, filePerms);
+	filePerms = S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH;
+	fd = open(fn, openFlags, filePerms);
 	if (fd == -1)
-		error_mannage("Error: Can't write to %s\n", 99, file_name);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", fn), exit(99);
 
-	return fd;
+	return (fd);
 }
 
-int cp_text_file(char *file_from, char *file_to)
+/**
+ * cp_text_file - cp content from a file to other
+ * @from: file to copy
+ * @to: file to create o trunc
+ *
+ * Return: int
+ */
+int cp_text_file(char *from, char *to)
 {
 	int fr, fw;
 	ssize_t numRead;
 	char buff[1024];
 
-	fr = read_file(file_from);
-	fw = create_file(file_to);
+	fr = read_file(from);
+	fw = create_file(to);
 
 	while ((numRead = read(fr, buff, 1024)) > 0)
 	{
-		if (write(fw, buff, numRead) != numRead)
-			error_mannage("Error: Can't write to %s\n", 99, file_to);
+		if (write(fw, buff, numRead) < 0)
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", to), exit(99);
 	}
 
 	if (numRead == -1)
-		error_mannage("Error: Can't read from file %s\n",98, file_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", from), exit(98);
 
 	if (close(fr) == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fr), exit(100);
@@ -61,7 +73,14 @@ int cp_text_file(char *file_from, char *file_to)
 	return (1);
 }
 
-int main (int ac, char **av)
+/**
+ * main - main program
+ * @ac: int
+ * @av: int
+ *
+ * Return: int
+ */
+int main(int ac, char **av)
 {
 	int res;
 

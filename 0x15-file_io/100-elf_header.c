@@ -10,6 +10,8 @@ void mannage_error(char *msg, int code);
 void isElfFile(unsigned char *e_ident);
 void mannage_magic(Elf64_Ehdr *header);
 void mannage_class_data(Elf64_Ehdr *header);
+void mannage_version(Elf64_Ehdr *header);
+void mannage_os_abi(Elf64_Ehdr *header);
 
 int main(int argc, char *argv[])
 {
@@ -38,7 +40,9 @@ int main(int argc, char *argv[])
 	isElfFile(efl_h->e_ident);
 	mannage_magic(efl_h);
 	mannage_class_data(efl_h);
-
+	mannage_version(efl_h);
+	mannage_os_abi(efl_h);
+	return (1);
 }
 
 void isElfFile(unsigned char *e_ident)
@@ -89,6 +93,64 @@ void mannage_class_data(Elf64_Ehdr *header)
 		default:
 			dprintf(STDOUT_FILENO, "Invalid format %x\n", header->e_ident[EI_DATA]);
 
+	}
+}
+
+void mannage_version(Elf64_Ehdr *header)
+{
+	dprintf(STDOUT_FILENO, "  Version:   ");
+	switch (header->e_ident[EI_VERSION])
+	{
+		case EV_CURRENT:
+			dprintf(STDOUT_FILENO, "%i (current)\n", header->e_ident[EI_VERSION]);
+			break;
+		case EV_NONE:
+			dprintf(STDOUT_FILENO, "%i (invalid\n", header->e_ident[EI_VERSION]);
+			break;
+		default:
+			dprintf(STDOUT_FILENO, "Unwknow\n");
+			break;
+	}
+}
+
+void mannage_os_abi(Elf64_Ehdr *header)
+{
+	dprintf(STDOUT_FILENO, "  OS/ABI:   ");
+	switch (header->e_ident[EI_OSABI])
+	{
+		case ELFOSABI_HPUX:
+			dprintf(STDOUT_FILENO, "Hewlett-Packard HP-UX\n");
+			break;
+		case ELFOSABI_NETBSD:
+			dprintf(STDOUT_FILENO, "NetBSD\n");
+			break;
+		case ELFOSABI_SOLARIS:
+			dprintf(STDOUT_FILENO, "Sun Solaris\n");
+			break;
+		case ELFOSABI_AIX:
+			dprintf(STDOUT_FILENO, "AIX\n");
+			break;
+		case ELFOSABI_IRIX:
+			dprintf(STDOUT_FILENO, "IRIX\n");
+			break;
+		case ELFOSABI_FREEBSD:
+			dprintf(STDOUT_FILENO, "FreeBSD\n");
+			break;
+		case ELFOSABI_TRU64:
+			dprintf(STDOUT_FILENO, "Compaq TRU64 UNIX\n");
+			break;
+		case ELFOSABI_MODESTO:
+			dprintf(STDOUT_FILENO, "Novell Modesto\n");
+			break;
+		case ELFOSABI_OPENBSD:
+			dprintf(STDOUT_FILENO, "Open BSD\n");
+			break;
+		case ELFOSABI_SYSV:
+			dprintf(STDOUT_FILENO, "UNIX - System V\n");
+			break;
+		default:
+			dprintf(STDOUT_FILENO, "Unknown (0x%x)\n", header->e_ident[EI_OSABI]);
+			break;
 	}
 }
 

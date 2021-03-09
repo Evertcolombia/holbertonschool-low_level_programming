@@ -152,6 +152,9 @@ void mannage_os_abi(Elf64_Ehdr *header)
 			dprintf(STDOUT_FILENO, "Unknown (0x%x)\n", header->e_ident[EI_OSABI]);
 			break;
 	}
+
+	dprintf(STDOUT_FILENO, "  ABI Version:   ");
+	dprintf(STDOUT_FILENO, "%i\n", header->e_ident[EI_ABIVERSION]);
 }
 
 void mannage_error(char *msg, int code)

@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	efl_h = malloc(sizeof(Elf64_Ehdr));
 	if (efl_h == NULL)
 		mannage_error("Cant use malloc\n", 100);
-	
+
 	numRead = read(fd, efl_h, sizeof(efl_h));
 	if (numRead == -1)
 	{
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(99);
 	}
-	
+
 	isElfFile(efl_h->e_ident);
 	mannage_magic(efl_h);
 	mannage_class(efl_h);
@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
 	mannage_version(efl_h);
 	mannage_os_abi(efl_h);
 	mannage_type(efl_h);
+	printf("  Entry point address:\t\t    0x%06lx\n", efl_h->e_entry);
 	return (1);
 }
 
@@ -83,7 +84,7 @@ void mannage_class(Elf64_Ehdr *header)
 		{ELFCLASS64, "ELF64\n"},
 		{ELFCLASSNONE, "Invalid Class\n"}
 	};
-	struct_iterator(h_types, 3, header, "  Class:   ", EI_CLASS);
+	struct_iterator(h_types, 3, header, "  Class:\t\t\t    ", EI_CLASS);
 }
 
 void mannage_data(Elf64_Ehdr *header)
@@ -93,7 +94,7 @@ void mannage_data(Elf64_Ehdr *header)
 		{ELFDATA2MSB, "2's complement, big endian\n"},
 		{ELFDATANONE, "Invalid data encoding\n"}
 	};
-	struct_iterator(h_types, 3, header, "  Data:   ", EI_DATA);
+	struct_iterator(h_types, 3, header, "  Data:\t\t\t\t    ", EI_DATA);
 }
 
 void mannage_version(Elf64_Ehdr *header)
@@ -102,7 +103,7 @@ void mannage_version(Elf64_Ehdr *header)
 		{EV_CURRENT, "1 (current)\n"},
 		{EV_NONE, "0 (invalid\n"}
 	};
-	struct_iterator(h_types, 2, header, "  Version:   ", EI_VERSION);
+	struct_iterator(h_types, 2, header, "  Version:\t\t\t    ", EI_VERSION);
 }
 
 void mannage_os_abi(Elf64_Ehdr *header)
@@ -119,8 +120,8 @@ void mannage_os_abi(Elf64_Ehdr *header)
 		{ELFOSABI_OPENBSD, "Open BSD\n"},
 		{ELFOSABI_SYSV, "UNIX - System V\n"}
 	};
-	struct_iterator(h_types, 9, header, "  OS/ABI:   ", EI_OSABI);
-	dprintf(STDOUT_FILENO, "  ABI Version:   ");
+	struct_iterator(h_types, 9, header, "  OS/ABI:\t\t\t    ", EI_OSABI);
+	dprintf(STDOUT_FILENO, "  ABI Version:\t\t\t    ");
 	printf("%i\n", header->e_ident[EI_ABIVERSION]);
 }
 
@@ -137,7 +138,7 @@ void mannage_type(Elf64_Ehdr *header)
 		{ET_LOPROC, "Processor-specific\n"},
 		{ET_HIPROC, "Processor-specific\n"},
 	};
-	type_iterator(h_types, 8, header, "  Type:   ");
+	type_iterator(h_types, 8, header, "  Type:\t\t\t\t    ");
 }
 
 void struct_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title, int flag)
@@ -149,7 +150,7 @@ void struct_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title, int 
 		if (header->e_ident[flag] == h_t[i].type)
 		{
 			dprintf(STDOUT_FILENO, "%s", title);
-			printf("%s", h_t[i].msg);			
+			printf("%s", h_t[i].msg);
 		}
 		i++;
 	}
@@ -158,6 +159,7 @@ void struct_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title, int 
 void type_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title)
 {
 	int i = 0;
+
 	while (i < size)
 	{
 		if (header->e_type == h_t[i].type)
@@ -168,6 +170,7 @@ void type_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title)
 		i++;
 	}
 }
+
 
 void mannage_error(char *msg, int code)
 {

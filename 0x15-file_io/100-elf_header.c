@@ -9,9 +9,20 @@
 void mannage_error(char *msg, int code);
 void isElfFile(unsigned char *e_ident);
 void mannage_magic(Elf64_Ehdr *header);
-void mannage_class_data(Elf64_Ehdr *header);
+void mannage_class(Elf64_Ehdr *header);
+void mannage_data(Elf64_Ehdr *header);
 void mannage_version(Elf64_Ehdr *header);
 void mannage_os_abi(Elf64_Ehdr *header);
+void mannage_type(Elf64_Ehdr *header);
+
+typedef struct header_types
+{
+	int type;
+	char *msg;
+} Hdr_t;
+
+void struct_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title, int flag);
+void type_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title);
 
 int main(int argc, char *argv[])
 {
@@ -39,9 +50,11 @@ int main(int argc, char *argv[])
 	
 	isElfFile(efl_h->e_ident);
 	mannage_magic(efl_h);
-	mannage_class_data(efl_h);
+	mannage_class(efl_h);
+	mannage_data(efl_h);
 	mannage_version(efl_h);
 	mannage_os_abi(efl_h);
+	mannage_type(efl_h);
 	return (1);
 }
 
@@ -63,98 +76,97 @@ void mannage_magic(Elf64_Ehdr *header)
 	dprintf(STDOUT_FILENO, "%02x\n", header->e_ident[i]);
 }
 
-void mannage_class_data(Elf64_Ehdr *header)
+void mannage_class(Elf64_Ehdr *header)
 {
+	Hdr_t h_types[] = {
+		{ELFCLASS32, "ELF32\n"},
+		{ELFCLASS64, "ELF64\n"},
+		{ELFCLASSNONE, "Invalid Class\n"}
+	};
+	struct_iterator(h_types, 3, header, "  Class:   ", EI_CLASS);
+}
 
-	/* Class */
-	dprintf(STDOUT_FILENO, "  Class:   ");
-	switch(header->e_ident[EI_CLASS])
-	{
-		case ELFCLASS32:
-			dprintf(STDOUT_FILENO, "ELF32\n");
-			break;
-		case ELFCLASS64:
-			dprintf(STDOUT_FILENO, "ELF64\n");
-			break;
-		default:
-			dprintf(STDOUT_FILENO, "Invalid Class\n");
-			break;
-	}
-
-	/* Data */
-	dprintf(STDOUT_FILENO, "  Data:   ");
-	switch(header->e_ident[EI_DATA])
-	{
-		case ELFDATA2LSB:
-			dprintf(STDOUT_FILENO, "2's complement, little endian\n");
-			break;
-		case ELFDATA2MSB:
-			dprintf(STDOUT_FILENO, "2's complement, big endian\n");
-		default:
-			dprintf(STDOUT_FILENO, "Invalid format %x\n", header->e_ident[EI_DATA]);
-
-	}
+void mannage_data(Elf64_Ehdr *header)
+{
+	Hdr_t h_types[] = {
+		{ELFDATA2LSB, "2's complement, little endian\n"},
+		{ELFDATA2MSB, "2's complement, big endian\n"},
+		{ELFDATANONE, "Invalid data encoding\n"}
+	};
+	struct_iterator(h_types, 3, header, "  Data:   ", EI_DATA);
 }
 
 void mannage_version(Elf64_Ehdr *header)
 {
-	dprintf(STDOUT_FILENO, "  Version:   ");
-	switch (header->e_ident[EI_VERSION])
-	{
-		case EV_CURRENT:
-			dprintf(STDOUT_FILENO, "%i (current)\n", header->e_ident[EI_VERSION]);
-			break;
-		case EV_NONE:
-			dprintf(STDOUT_FILENO, "%i (invalid\n", header->e_ident[EI_VERSION]);
-			break;
-		default:
-			dprintf(STDOUT_FILENO, "Unwknow\n");
-			break;
-	}
+	Hdr_t h_types[] = {
+		{EV_CURRENT, "1 (current)\n"},
+		{EV_NONE, "0 (invalid\n"}
+	};
+	struct_iterator(h_types, 2, header, "  Version:   ", EI_VERSION);
 }
 
 void mannage_os_abi(Elf64_Ehdr *header)
 {
-	dprintf(STDOUT_FILENO, "  OS/ABI:   ");
-	switch (header->e_ident[EI_OSABI])
-	{
-		case ELFOSABI_HPUX:
-			dprintf(STDOUT_FILENO, "Hewlett-Packard HP-UX\n");
-			break;
-		case ELFOSABI_NETBSD:
-			dprintf(STDOUT_FILENO, "NetBSD\n");
-			break;
-		case ELFOSABI_SOLARIS:
-			dprintf(STDOUT_FILENO, "Sun Solaris\n");
-			break;
-		case ELFOSABI_AIX:
-			dprintf(STDOUT_FILENO, "AIX\n");
-			break;
-		case ELFOSABI_IRIX:
-			dprintf(STDOUT_FILENO, "IRIX\n");
-			break;
-		case ELFOSABI_FREEBSD:
-			dprintf(STDOUT_FILENO, "FreeBSD\n");
-			break;
-		case ELFOSABI_TRU64:
-			dprintf(STDOUT_FILENO, "Compaq TRU64 UNIX\n");
-			break;
-		case ELFOSABI_MODESTO:
-			dprintf(STDOUT_FILENO, "Novell Modesto\n");
-			break;
-		case ELFOSABI_OPENBSD:
-			dprintf(STDOUT_FILENO, "Open BSD\n");
-			break;
-		case ELFOSABI_SYSV:
-			dprintf(STDOUT_FILENO, "UNIX - System V\n");
-			break;
-		default:
-			dprintf(STDOUT_FILENO, "Unknown (0x%x)\n", header->e_ident[EI_OSABI]);
-			break;
-	}
 
+	Hdr_t h_types[] = {
+		{ELFOSABI_HPUX, "Hewlett-Packard HP-UX\n"},
+		{ELFOSABI_NETBSD, "NetBSD\n"},
+		{ELFOSABI_SOLARIS, "Sun Solaris\n"},
+		{ELFOSABI_AIX, "AIX\n"},
+		{ELFOSABI_FREEBSD, "FreeBSD\n"},
+		{ELFOSABI_TRU64, "Compaq TRU64 UNIX\n"},
+		{ELFOSABI_MODESTO, "Novell Modesto\n"},
+		{ELFOSABI_OPENBSD, "Open BSD\n"},
+		{ELFOSABI_SYSV, "UNIX - System V\n"}
+	};
+	struct_iterator(h_types, 9, header, "  OS/ABI:   ", EI_OSABI);
 	dprintf(STDOUT_FILENO, "  ABI Version:   ");
-	dprintf(STDOUT_FILENO, "%i\n", header->e_ident[EI_ABIVERSION]);
+	printf("%i\n", header->e_ident[EI_ABIVERSION]);
+}
+
+void mannage_type(Elf64_Ehdr *header)
+{
+	Hdr_t h_types[] = {
+		{ET_NONE, "No file type\n"},
+		{ET_REL, "Relocatable file\n"},
+		{ET_EXEC, "Executable file\n"},
+		{ET_DYN, "Shared object file\n"},
+		{ET_CORE, "Core file\n"},
+		{ET_LOOS, "Operating system-specific\n"},
+		{ET_HIOS, "Operating system-specific\n"},
+		{ET_LOPROC, "Processor-specific\n"},
+		{ET_HIPROC, "Processor-specific\n"},
+	};
+	type_iterator(h_types, 8, header, "  Type:   ");
+}
+
+void struct_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title, int flag)
+{
+	int i = 0;
+
+	while (i < size)
+	{
+		if (header->e_ident[flag] == h_t[i].type)
+		{
+			dprintf(STDOUT_FILENO, "%s", title);
+			printf("%s", h_t[i].msg);			
+		}
+		i++;
+	}
+}
+
+void type_iterator(Hdr_t *h_t, int size, Elf64_Ehdr *header, char *title)
+{
+	int i = 0;
+	while (i < size)
+	{
+		if (header->e_type == h_t[i].type)
+		{
+			dprintf(STDOUT_FILENO, "%s", title);
+			printf("%s", h_t[i].msg);
+		}
+		i++;
+	}
 }
 
 void mannage_error(char *msg, int code)

@@ -1,14 +1,13 @@
 /**
  * swap_int - swaps the values of two integers
- * @a: a pointer the intenger we want to set to 42
- * @b: pointer the intenger we want to set to 98
+ * @a: int
+ * @b: int
  *
  * Return: none
  */
 void swap_int(int *a, int *b)
 {
-	int c, d;
+	int c;
 
-	c = *a, d = *b;
-	*a = d, *b = c;
+	c = *b, *b = *a, *a = c;
 }

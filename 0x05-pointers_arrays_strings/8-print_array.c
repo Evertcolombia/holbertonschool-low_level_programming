@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  * print_array - print array
  * @a: array
@@ -8,14 +7,9 @@
  */
 void print_array(int *a, int n)
 {
-	int count, length;
+	int i;
 
-	length = n - 1;
-	for (count = 0; count < n; count++)
-	{
-		printf("%d", a[count]);
-		if (count != length)
-			printf(", ");
-	}
-	putchar('\n');
+	for (i = 0; i < n && (*a + 1) != '\0'; i++)
+		printf("%i", *a++);
+	printf("%i\n", *a);
 }
